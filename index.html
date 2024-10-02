@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ponte Al Dia-Radio</title>
+    <link rel="stylesheet" href="css/styles.css">
+   
+</head>
+
+<body>
+    <section class="hero-section">
+        <div class="hero-overlay">
+            <img src="img/Blue Modern Alonso Podcast Logo (1).png" alt="radio Logo" class="logo-img">
+        </div>
+        <div class="hero-content">
+            <p class="primera_Seccion">Ponte Al Dia </p>
+            <p class="primera_Seccion">¡Radio digital!</p>
+            <p style="margin-top: 100px;">Siguenos en:</p>
+            <div class="icon-list">
+                <a href="https://www.facebook.com/pontealdiacanaldigital/"
+                    target="_blank">
+                    <img src="img/facebook.png" alt="Spotify">
+                </a>
+
+                <a href="https://wa.me/573105313941?text=¡Hola!%20Me%20gustaría%20solicitar%20la%20siguiente%20canción:
+                " target="_blank">
+                    <img src="img/whatsapp.png" alt="whatsapp">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="player-section">
+        <div class="player">
+            <div class="controls">
+                <button class="round-button" id="playButton">
+                    <a id="playIcon" href="#" style="display: inline;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                    </a>
+                    <a id="pauseIcon" href="#" style="display: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+                            <path d="M6 19h4V5H6zm8 0h4V5h-4z" />
+                        </svg>
+                    </a>
+                </button>
+                <div class="progress">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+        </div>
+        <audio id="audioPlayer" src="https://sonic.paulatina.co/8174/stream" preload="auto"></audio>
+
+    </section>
+
+    <section class="third-section">
+        <h2 style="color: #555;">Equipo de trabajo</h2>
+        <div class="photo-grid">
+            <div>
+                <img src="img/Diseño sin título (3).jpg" alt="Miembros del equipo">
+                <p class="photo-caption" style="text-align: center; color: #555; margin-top: 14px;">Jose Carval</p>
+                <p style="text-align: center; color: #555;">Director de Comunicaciones</p>
+            </div>
+            <div>
+                <img src="img/Diseño sin título (3).jpg" alt="Miembros del equipo">
+                <p class="photo-caption" style="text-align: center; color: #555; margin-top: 14px;">Algemiro Teran
+                </p>
+                <p style="text-align: center; color: #555;">Coordinador de Comunicaciones</p>
+
+            </div>
+            <div>
+                <img src="img/Diseño sin título (4).jpg" alt="Miembros del equipo">
+                <p class="photo-caption" style="text-align: center; color: #555; margin-top: 14px;">Stefanny Romero
+                </p>
+                <p style="text-align: center; color: #555;">Locutora</p>
+            </div>
+        </div>
+        <footer style="text-align: center; color: #555; font-size: 12px; margin-top: 18px;">Todos los derechos
+            reservados © Ponte Al Dia - Canal Digital</footer>
+    </section>
+
+
+
+    <script>
+        const audioPlayer = document.getElementById('audioPlayer');
+        const playButton = document.getElementById('playButton');
+        const playIcon = document.getElementById('playIcon');
+        const pauseIcon = document.getElementById('pauseIcon');
+        const progressBar = document.querySelector('.progress-bar');
+
+        let isPlaying = false;
+
+        playButton.addEventListener('click', () => {
+            if (isPlaying) {
+                pauseAudio();
+            } else {
+                playAudio();
+            }
+        });
+
+        function playAudio() {
+            isPlaying = true;
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'inline';
+            audioPlayer.play();
+            progressBar.style.backgroundColor = '#1DB954';
+            progressBar.style.animation = 'loadAnimation 10s linear forwards';
+        }
+
+        function pauseAudio() {
+            isPlaying = false;
+            playIcon.style.display = 'inline';
+            pauseIcon.style.display = 'none';
+            audioPlayer.pause();
+            progressBar.style.animationPlayState = 'paused';
+        }
+
+        audioPlayer.addEventListener('timeupdate', () => {
+            const percentage = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            progressBar.style.width = `${percentage}%`;
+        });
+
+
+    </script>
+</body>
+
+</html>
